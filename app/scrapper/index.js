@@ -16,11 +16,11 @@ var casper = require('casper').create({
 });
 casper.start();
 
-casper.open("http://techmeme.com");
+casper.open("<YOUR_WEBSITE>");
 
 casper.then(function(){
   // this.test.assertExists('');
-  this.waitForSelector('#topcol1',
+  this.waitForSelector('<SOME_EL>',
   function pass() {
     console.log("Continue")
   },
@@ -34,9 +34,9 @@ casper.then(function(){
 casper.then(function(){
 var links = this.evaluate(function(){
   var results = [];
-  var elts = document.getElementsByClassName("ii");
+  var elts = document.getElementsByClassName("<SOME_CLASS>");
   for(var i = 0; i < elts.length; i++){
-    var link = elts[i].getElementsByTagName("a")[0].getAttribute("href");
+    var link = elts[i].getElementsByTagName("<SOME_OTHER_EL>")[0].getAttribute("<SOME_ATTR>");
     var headline = elts[i].firstChild.textContent;
     results.push({link: link, headline: headline});
   }
