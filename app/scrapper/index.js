@@ -1,8 +1,6 @@
 'use strict';
 
-let casper = require('casper');
-
-casper.create({
+var casper = require('casper').create({
   waitTimeout: 10000,
   stepTimeout: 10000,
   verbose: true,
@@ -16,8 +14,6 @@ casper.create({
     this.echo('** Step-Timeout **') // todo add logic
   }
 });
-
-
 casper.start();
 
 casper.open("http://techmeme.com");
@@ -34,6 +30,8 @@ casper.then(function(){
 );
 });
 
+
+casper.then(function(){
 var links = this.evaluate(function(){
   var results = [];
   var elts = document.getElementsByClassName("ii");
@@ -43,13 +41,13 @@ var links = this.evaluate(function(){
     results.push({link: link, headline: headline});
   }
   return results;
-});
-
-console.log("There were "  + links.length + " stories");
+  console.log("There were "  + links.length + " stories");
 
   for(var i = 0; i < links.length; i++){
     console.log(links[i].headline);
-}
+  }
+});
+});
 
 casper.on('remote.message', function(msg){
   this.echo('remote message caught: ' + msg)
@@ -66,5 +64,4 @@ casper.on('resource.error', function(msg){
 casper.on('resource.received', function(resource){
   console.log(resource.url)
 });
-
 casper.run();

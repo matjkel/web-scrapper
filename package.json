@@ -1,0 +1,10 @@
+{
+  "name": "scrapper",
+  "version": "0.0.1",
+  "description": "gunna try ta scrape",
+  "main": "index.js",
+  "author": "mjk",
+  "dependencies": {
+    "casperjs": "^1.1.3"
+  }
+}
